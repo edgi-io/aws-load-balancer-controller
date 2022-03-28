@@ -20,10 +20,10 @@ var (
 	// Remember to update docs/guide/targetgroupbinding/targetgroupbinding.md if changing
 	defaultTrafficProxyNodeLabelSelector = metav1.LabelSelector{
 		MatchExpressions: []metav1.LabelSelectorRequirement{
-			{
-				Key:      labelNodeRoleMaster,
-				Operator: metav1.LabelSelectorOpDoesNotExist,
-			},
+//			{
+//				Key:      labelNodeRoleMaster,
+//				Operator: metav1.LabelSelectorOpDoesNotExist,
+//			},
 			{
 				Key:      labelNodeRoleExcludeBalancer,
 				Operator: metav1.LabelSelectorOpDoesNotExist,
@@ -32,11 +32,11 @@ var (
 				Key:      labelAlphaNodeRoleExcludeBalancer,
 				Operator: metav1.LabelSelectorOpDoesNotExist,
 			},
-			{
-				Key:      labelEKSComputeType,
-				Operator: metav1.LabelSelectorOpNotIn,
-				Values:   []string{"fargate"},
-			},
+//			{
+//				Key:      labelEKSComputeType,
+//				Operator: metav1.LabelSelectorOpNotIn,
+//				Values:   []string{"fargate"},
+//			},
 		},
 	}
 )
