@@ -14,11 +14,13 @@ RUN --mount=type=bind,target=. \
 FROM base AS build
 ARG TARGETOS
 ARG TARGETARCH
+ARG GIT_VERSION
+ARG GIT_COMMIT
 ENV VERSION_PKG=sigs.k8s.io/aws-load-balancer-controller/pkg/version
 RUN --mount=type=bind,target=. \
     --mount=type=cache,target=/root/.cache/go-build \
-    GIT_VERSION=$(git describe --tags --dirty --always) && \
-    GIT_COMMIT=$(git rev-parse HEAD) && \
+    GIT_VERSION=$([[ $GIT_VERSION ]] && echo $GIT_VERSION || git describe --tags --dirty --always) && \
+    GIT_COMMIT=$([[ $GIT_COMMIT ]] && echo $GIT_COMMIT || git rev-parse HEAD) && \
     BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z) && \
     GOOS=${TARGETOS} GOARCH=${TARGETARCH} GO111MODULE=on \
     CGO_CPPFLAGS="-D_FORTIFY_SOURCE=2" \
